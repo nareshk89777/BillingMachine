@@ -65,41 +65,22 @@ public class BillingMachine {
 
 // Add Quantity
 
-    public float addQuantity(String name, float quantity) {
-        float amount = 0;
+    public boolean addQuantity(String name, int quantity) {
         if (checkItem(name)) {
-            for (Items item:
-                 items) {
-                if(item != null && item.getItemName() != null && item.getQuantity() != 0){
-                    item.setAmount(item.getCost() * item.getQuantity());
-                    System.out.println("=================");
-                    return item.getAmount();
-                }
-
-            }
-
+            for (Items item : items)
+                if(item != null)
+                item.setQuantity(quantity);
+            System.out.println("The quantity added successfully");
+            return false;
         }
-        /*if (count >= items.length) {
-            System.out.println("Do not have sufficient space");
-
-        }*/
-        return 0;
-
-    }
-
-    public boolean itemAmount(String name, float quantity) {
-
-        for (Items item :
-                items) {
-            if (item != null && item.getAmount() != 0) {
-                item.setAmount(item.getCost() * item.getQuantity());
-                return true;
-            }
-
+        if (count >= items.length) {
+            System.out.println("You do not have sufficient space to add quantity");
+            return false;
         }
-        return false;
+        items[count] = new Items(name, quantity);
+        count++;
+        return true;
     }
-
     // Payment Details
 
     public void paymentDetails() {
@@ -110,8 +91,9 @@ public class BillingMachine {
         for (Items item :
                 items) {
             if (item != null) {
-                System.out.println("\t" + x++ + "\t\t\t" + item.getItemName() + "\t\t\t" + item.getCost() + "\t\t\t\t" + item.getQuantity()
-                        + "\t\t\t" + item.getAmount());
+                item.setAmount(item.getCost() * item.getQuantity());
+                System.out.println("\t" + x++ + "\t\t\t" + item.getItemName() + "\t\t\t" + item.getCost() + "\t\t\t" + item.getQuantity()
+                        + "\t\t\t" + item.getQuantity());
             }
 
         }

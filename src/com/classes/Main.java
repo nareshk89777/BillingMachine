@@ -36,7 +36,7 @@ public class Main {
                 System.out.println("Enter Item name");
                 name = ss.next();
                 System.out.println("Enter Item quantity");
-                float quantity = ss.nextFloat();
+                int quantity = ss.nextInt();
                 bm1.addQuantity(name, quantity);
                 break;
             case 4:
